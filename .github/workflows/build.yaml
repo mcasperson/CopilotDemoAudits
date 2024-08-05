@@ -58,6 +58,11 @@ jobs:
       - name: Test
         run: npm test
         shell: bash
+      - name: Collect Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: test-report.html
       - name: Build
         run: |-
           # package.json does not define a build script, so the build command is commented out.
@@ -107,11 +112,6 @@ jobs:
         with:
           tag_name: ${{ steps.determine_version.outputs.semVer }}+run${{ github.run_number }}-attempt${{ github.run_attempt }}
           files: CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip
-      - name: Upload Test Results
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.determine_version.outputs.semVer }}+run${{ github.run_number }}-attempt${{ github.run_attempt }}
-          files: test-report.html
 permissions:
   id-token: write
   checks: write
