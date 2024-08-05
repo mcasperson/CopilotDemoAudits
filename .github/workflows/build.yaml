@@ -107,6 +107,11 @@ jobs:
         with:
           tag_name: ${{ steps.determine_version.outputs.semVer }}+run${{ github.run_number }}-attempt${{ github.run_attempt }}
           files: CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip
+      - name: Upload Test Results
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.determine_version.outputs.semVer }}+run${{ github.run_number }}-attempt${{ github.run_attempt }}
+          files: test-report.html
 permissions:
   id-token: write
   checks: write
