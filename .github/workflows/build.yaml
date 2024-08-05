@@ -71,28 +71,23 @@ jobs:
           if [[ -d "build" ]]; then
             SOURCEPATH=build
           fi
-          octo pack \
-           --basePath ${SOURCEPATH} \
-           --outFolder ${OUTPUTPATH} \
-           --id CopilotDemo \
-           --version ${{ steps.determine_version.outputs.semVer }} \
-           --format zip \
-           --overwrite \
-           --include '**/*.html' \
-           --include '**/*.htm' \
-           --include '**/*.css' \
-           --include '**/*.js' \
-           --include '**/*.min' \
-           --include '**/*.map' \
-           --include '**/*.sql' \
-           --include '**/*.png' \
-           --include '**/*.jpg' \
-           --include '**/*.jpeg' \
-           --include '**/*.gif' \
-           --include '**/*.json' \
-           --include '**/*.env' \
-           --include '**/*.txt' \
-           --include '**/*.Procfile'
+          zip -r ${OUTPUTPATH}\CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip \
+           ${SOURCEPATH} \          
+           '*.html' \
+           '*.htm' \
+           '*.css' \
+           '*.js' \
+           '*.min' \
+           '*.map' \
+           '*.sql' \
+           '*.png' \
+           '*.jpg' \
+           '*.jpeg' \
+           '*.gif' \
+           '*.json' \
+           '*.env' \
+           '*.txt' \
+           '*.Procfile'
         shell: bash
       - name: Tag Release
         uses: mathieudutour/github-tag-action@v6.1
