@@ -72,7 +72,7 @@ jobs:
             SOURCEPATH=build
           fi
           zip -r ${OUTPUTPATH}\CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip \
-           ${SOURCEPATH} \          
+           ${SOURCEPATH} \
            '*.html' \
            '*.htm' \
            '*.css' \
