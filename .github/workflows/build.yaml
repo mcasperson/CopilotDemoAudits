@@ -112,6 +112,25 @@ jobs:
         with:
           tag_name: ${{ steps.determine_version.outputs.semVer }}+run${{ github.run_number }}-attempt${{ github.run_attempt }}
           files: CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip
+      - name: Push packages to Octopus Deploy
+        uses: OctopusDeploy/push-package-action@v3
+        env:
+          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
+          OCTOPUS_URL: ${{ secrets.OCTOPUS_SERVER_URL }}
+          OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
+        with:
+          packages: CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip
+          overwrite_mode: OverwriteExisting
+      - name: Generate Octopus Deploy build information
+        uses: OctopusDeploy/push-build-information-action@v3
+        env:
+          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
+          OCTOPUS_URL: ${{ secrets.OCTOPUS_SERVER_URL }}
+          OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
+        with:
+          version: ${{ steps.determine_version.outputs.semVer }}
+          packages: CopilotDemo
+          overwrite_mode: OverwriteExisting
 permissions:
   id-token: write
   checks: write
