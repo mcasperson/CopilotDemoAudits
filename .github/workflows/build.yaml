@@ -76,7 +76,7 @@ jobs:
           if [[ -d "build" ]]; then
             SOURCEPATH=build
           fi
-          zip -r ${OUTPUTPATH}\CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip \
+          zip -r ${OUTPUTPATH}/CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip \
            ${SOURCEPATH} \
            '*.html' \
            '*.htm' \
