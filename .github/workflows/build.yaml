@@ -133,6 +133,15 @@ jobs:
           version: ${{ steps.determine_version.outputs.semVer }}
           packages: CopilotDemo
           overwrite_mode: OverwriteExisting
+      - name: Create Octopus Release
+        uses: OctopusDeploy/create-release-action@v3
+        env:
+          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
+          OCTOPUS_URL: ${{ secrets.OCTOPUS_SERVER_URL }}
+          OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
+        with:
+          project: CopilotDemo
+          packages: CopilotDemo:${{ steps.determine_version.outputs.semVer }}
 permissions:
   id-token: write
   checks: write
