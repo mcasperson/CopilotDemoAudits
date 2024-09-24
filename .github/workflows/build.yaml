@@ -59,7 +59,7 @@ jobs:
         run: npm test
         shell: bash
       - name: Collect Test Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Test Results
           path: test-report.html
