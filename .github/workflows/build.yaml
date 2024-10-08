@@ -108,6 +108,10 @@ jobs:
         with:
           packages: CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip
           overwrite_mode: OverwriteExisting
+      
+      # Build information links the commits and issues
+      # as part of this build to the package deployed
+      # by Octopus.      
       - name: Generate Octopus Deploy build information
         uses: OctopusDeploy/push-build-information-action@v3
         env:
@@ -118,6 +122,10 @@ jobs:
           version: ${{ steps.determine_version.outputs.semVer }}
           packages: CopilotDemo
           overwrite_mode: OverwriteExisting
+      
+      # This is the handover from GitHub Actions to 
+      # Octopus. The release is created and automatically
+      # deployed to the Development environment.
       - name: Create Octopus Release
         uses: OctopusDeploy/create-release-action@v3
         env:
@@ -127,6 +135,7 @@ jobs:
         with:
           project: Audits
           packages: CopilotDemo:${{ steps.determine_version.outputs.semVer }}
+
 permissions:
   id-token: write
   checks: write
