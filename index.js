@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/new', (req, res) => {
-    res.send(null.getMessage())
+    res.send(null.getMessage()) 
 })
 
 app.listen(port, () => {
