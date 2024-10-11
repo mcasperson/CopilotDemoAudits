@@ -115,7 +115,7 @@ jobs:
       - name: Push packages to Octopus Deploy
         uses: OctopusDeploy/push-package-action@v3
         env:
-          OCTOPUS_API_KEY: ${{ secrets.GHU_OCTOPUS_API_TOKEN }}
+          OCTOPUS_API_KEY: ${{ secrets.GHU_OCTOPUS_API_KEY }}
           OCTOPUS_URL: ${{ secrets.GHU_OCTOPUS_SERVER_URL }}
           OCTOPUS_SPACE: ${{ secrets.GHU_OCTOPUS_SPACE }}
         with:
@@ -125,7 +125,7 @@ jobs:
       - name: Push packages to Octopus Deploy
         uses: OctopusDeploy/push-package-action@v3
         env:
-          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
+          OCTOPUS_API_KEY: ${{ secrets.GHU_OCTOPUS_API_KEY }}
           OCTOPUS_URL: ${{ secrets.OCTOPUS_SERVER_URL }}
           OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
         with:
