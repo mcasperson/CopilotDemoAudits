@@ -7,6 +7,9 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.get('/new', (req, res) => {
+    res.send(null.getMessage())
+})
 
 
 app.listen(port, () => {
