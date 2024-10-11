@@ -106,7 +106,7 @@ jobs:
         env:
           OCTOPUS_API_KEY: ${{ secrets.GHU_OCTOPUS_API_KEY }}
           OCTOPUS_URL: ${{ secrets.GHU_OCTOPUS_SERVER_URL }}
-          OCTOPUS_SPACE: Copilot Demo
+          OCTOPUS_SPACE: ${{ secrets.GHU_OCTOPUS_SPACE }}
         with:
           version: ${{ steps.determine_version.outputs.semVer }}
           packages: CopilotDemo
@@ -117,7 +117,7 @@ jobs:
         env:
           OCTOPUS_API_KEY: ${{ secrets.GHU_OCTOPUS_API_KEY }}
           OCTOPUS_URL: ${{ secrets.GHU_OCTOPUS_SERVER_URL }}
-          OCTOPUS_SPACE: Copilot Demo
+          OCTOPUS_SPACE: ${{ secrets.GHU_OCTOPUS_SPACE }}
         with:
           packages: CopilotDemo.${{ steps.determine_version.outputs.semVer }}.zip
           overwrite_mode: OverwriteExisting
